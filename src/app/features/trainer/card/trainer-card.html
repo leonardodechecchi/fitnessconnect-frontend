@@ -1,0 +1,16 @@
+<p-card [header]="trainer().user.fullName" class="h-full">
+  <ng-template #header>
+    <img
+      [src]="trainer().user.profilePictureUrl"
+      class="w-full rounded-t-2xl"
+    />
+  </ng-template>
+  <p>{{ trainer().bio }}</p>
+  <ng-template #footer>
+    <div class="flex flex-wrap gap-2">
+      @for (specialty of trainer().specialties; track specialty.id) {
+      <p-chip [label]="specialty.name" />
+      }
+    </div>
+  </ng-template>
+</p-card>
