@@ -1256,7 +1256,13 @@ export interface paths {
                 };
                 cookie?: never;
             };
-            requestBody?: never;
+            requestBody?: {
+                content: {
+                    "application/json": {
+                        name?: string;
+                    };
+                };
+            };
             responses: {
                 200: {
                     headers: {
@@ -1482,6 +1488,9 @@ export interface components {
             name: string;
             /** Format: uuid */
             trainerId: string;
+        };
+        "Get Wishlist By Id Input": {
+            name?: string;
         };
         "Create Wishlist Item Input": {
             /** Format: uuid */
