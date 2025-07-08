@@ -1,1 +1,43 @@
-<p>register works!</p>
+<div class="min-h-screen flex items-center justify-center">
+  <p-card class="w-full max-w-md">
+    <form class="space-y-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <p-floatlabel variant="in">
+        <input
+          type="text"
+          [formControl]="form.controls.firstName"
+          pInputText
+          fluid
+        />
+        <label>First Name</label>
+      </p-floatlabel>
+      <p-floatlabel variant="in">
+        <input
+          type="text"
+          [formControl]="form.controls.lastName"
+          pInputText
+          fluid
+        />
+        <label>Last Name</label>
+      </p-floatlabel>
+      <p-floatlabel variant="in">
+        <input
+          type="email"
+          [formControl]="form.controls.email"
+          pInputText
+          fluid
+        />
+        <label>Email</label>
+      </p-floatlabel>
+      <p-floatlabel variant="in">
+        <p-password
+          [formControl]="form.controls.password"
+          [toggleMask]="true"
+          [feedback]="false"
+          fluid
+        />
+        <label>Password</label>
+      </p-floatlabel>
+      <p-button label="Register" type="submit" fluid />
+    </form>
+  </p-card>
+</div>

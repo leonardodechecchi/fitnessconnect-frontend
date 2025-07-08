@@ -4,5 +4,5 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class Auth {
-  private isAuthenticated = signal<boolean>(false);
+  private readonly isAuthenticated = signal<boolean>(false);
 }
