@@ -11,12 +11,12 @@ import { WishlistHttpClient } from '../wishlist-http-client';
   templateUrl: './wishlist-list.html',
 })
 export class WishlistList {
-  private readonly http = inject(WishlistHttpClient);
+  #http = inject(WishlistHttpClient);
 
-  private page = signal(1);
-  private limit = signal(10);
+  page = signal(1);
+  limit = signal(10);
 
-  protected wishlists$ = this.http
+  wishlists$ = this.#http
     .getWishlists({
       page: this.page().toString(),
       limit: this.limit().toString(),

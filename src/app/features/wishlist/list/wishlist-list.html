@@ -1,7 +1,7 @@
 <div class="container mx-auto">
   <div class="flex flex-col gap-4 p-5">
-    <h1 class="text-4xl my-5">My Wishlists</h1>
-    @for (wishlist of (wishlists$ | async); track wishlist.id) {
+    <h1 class="text-4xl font-bold my-6">I miei preferiti</h1>
+    @for (wishlist of wishlists$ | async; track wishlist.id) {
     <a [routerLink]="['/wishlists', wishlist.id]">
       <app-wishlist-card [wishlist]="wishlist" />
     </a>
