@@ -1,12 +1,13 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 import { WishlistCard } from '../card/wishlist-card';
 import { WishlistHttpClient } from '../wishlist-http-client';
 
 @Component({
   selector: 'app-wishlist-list',
-  imports: [AsyncPipe, WishlistCard],
+  imports: [AsyncPipe, WishlistCard, RouterLink],
   templateUrl: './wishlist-list.html',
 })
 export class WishlistList {

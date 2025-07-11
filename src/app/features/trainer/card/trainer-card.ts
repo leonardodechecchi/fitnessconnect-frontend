@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ChipModule } from 'primeng/chip';
-import { GetTrainersResponse } from '../trainer-types';
+import { GetTrainersResponse, Trainer } from '../trainer-types';
 
 @Component({
   selector: 'app-trainer-card',
@@ -9,5 +9,6 @@ import { GetTrainersResponse } from '../trainer-types';
   templateUrl: './trainer-card.html',
 })
 export class TrainerCard {
-  readonly trainer = input.required<GetTrainersResponse['data'][0]>();
+  trainer = input.required<Trainer>();
+  specialties = input<GetTrainersResponse['data'][number]['specialties']>();
 }

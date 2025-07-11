@@ -2,7 +2,10 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
     @for (trainer of (trainers$ | async)?.data; track trainer.user.id) {
     <a href="">
-      <app-trainer-card [trainer]="trainer" />
+      <app-trainer-card
+        [trainer]="trainer"
+        [specialties]="trainer.specialties"
+      />
     </a>
     } @empty {
     <!-- TODO -->

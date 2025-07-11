@@ -3,6 +3,11 @@ import { TrainerList } from './list/trainer-list';
 
 export const trainerRoutes: Routes = [
   {
+    path: '',
+    redirectTo: '/trainers',
+    pathMatch: 'full',
+  },
+  {
     path: 'trainers',
     component: TrainerList,
   },

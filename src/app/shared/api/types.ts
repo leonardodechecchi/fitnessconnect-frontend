@@ -605,6 +605,7 @@ export interface paths {
                     limit: string;
                     name?: string;
                     specialties?: string;
+                    populate?: "specialties" | "availabilities" | "exceptions";
                 };
                 header?: never;
                 path?: never;
@@ -626,12 +627,7 @@ export interface paths {
                                 totalItems: number;
                                 totalPages: number;
                             };
-                            data: (components["schemas"]["Trainer"] & {
-                                specialties: {
-                                    id: string;
-                                    name: string;
-                                }[];
-                            })[];
+                            data: (components["schemas"]["Trainer"] & Record<string, never>)[];
                         };
                     };
                 };
@@ -675,12 +671,7 @@ export interface paths {
                         "application/json": {
                             message?: string;
                             timestamp: string;
-                            data: components["schemas"]["Trainer"] & {
-                                specialties: {
-                                    id: string;
-                                    name: string;
-                                }[];
-                            };
+                            data: components["schemas"]["Trainer"] & Record<string, never>;
                         };
                     };
                 };
@@ -1509,6 +1500,24 @@ export interface components {
             user: components["schemas"]["User"];
             bio?: string;
             sessionDuration: number;
+            specialties?: {
+                id: string;
+                name: string;
+            }[];
+            availabilities?: {
+                id: string;
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+            exceptions?: {
+                id: string;
+                startDatetime: string;
+                endDatetime: string;
+                isAvailable: boolean;
+                reason?: string;
+                trainer?: unknown;
+            }[];
         };
         Wishlist: {
             id: string;

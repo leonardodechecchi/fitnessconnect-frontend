@@ -1,4 +1,6 @@
-import { paths } from '../../shared/api/types';
+import { components, paths } from '../../shared/api/types';
+
+export type Trainer = components['schemas']['Trainer'];
 
 export type GetTrainersQueryParams =
   paths['/trainers/']['get']['parameters']['query'];

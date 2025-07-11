@@ -5,14 +5,14 @@
     <div class="flex flex-col gap-4">
       <h1 class="text-2xl">{{ wishlist().name }}</h1>
       <div class="flex gap-4">
-        <p-button icon="pi pi-trash" severity="secondary" />
-        <p-button icon="pi pi-pencil" severity="secondary" />
+        <p-button label="Delete" rounded="true" severity="secondary" />
+        <p-button label="Edit" rounded="true" severity="secondary" />
       </div>
     </div>
     <p-image
       [src]="realItem?.at(0)?.trainer?.user?.profilePictureUrl"
       width="250"
-      imageClass="rounded-2xl"
+      imageClass="rounded-lg"
     />
   </div>
 </p-card>

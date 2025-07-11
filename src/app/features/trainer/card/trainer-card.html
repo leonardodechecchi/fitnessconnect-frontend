@@ -6,11 +6,13 @@
     />
   </ng-template>
   <p>{{ trainer().bio }}</p>
+  @if (specialties()) {
   <ng-template #footer>
     <div class="flex flex-wrap gap-2">
-      @for (specialty of trainer().specialties; track specialty.id) {
+      @for (specialty of specialties(); track specialty.id) {
       <p-chip [label]="specialty.name" />
       }
     </div>
   </ng-template>
+  }
 </p-card>

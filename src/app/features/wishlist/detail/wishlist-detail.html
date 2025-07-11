@@ -1,0 +1,10 @@
+<div class="container mx-auto">
+  <div class="flex flex-col gap-4">
+    <h1 class="text-4xl my-5">{{ wishlist().name }}</h1>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      @for (item of ($items() | async); track item.id) {
+      <!-- <app-trainer-card [trainer]="item.trainer"></app-trainer-card> -->
+      }
+    </div>
+  </div>
+</div>
