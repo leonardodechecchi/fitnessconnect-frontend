@@ -19,7 +19,6 @@ import { AuthHttpClient } from '../auth-http-client';
     PasswordModule,
   ],
   templateUrl: './register.html',
-  styleUrl: './register.css',
 })
 export class Register {
   private readonly formBuilder = inject(FormBuilder);
