@@ -1,10 +1,27 @@
-<div class="container mx-auto">
+@let response = response$ | async;
+
+<div class="container mx-auto px-10">
+  <p-confirmdialog />
   <div class="flex flex-col gap-4">
-    <!-- <h1 class="text-4xl my-5">{{}}</h1> -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      @for (item of items$ | async; track item.id) {
-      <app-trainer-card [trainer]="item.trainer" />
-      }
+    <h1 class="text-4xl font-bold my-10">{{ response?.wishlist?.name }}</h1>
+    @for (item of response?.items; track item.id) {
+    <div class="flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <p-avatar
+          [image]="item?.trainer?.user?.profilePictureUrl"
+          shape="circle"
+          size="xlarge"
+        />
+        <div class="font-medium">{{ item.trainer.user.fullName }}</div>
+      </div>
+      <p-button
+        icon="pi pi-trash"
+        rounded="true"
+        severity="secondary"
+        (onClick)="onDelete($event)"
+      />
     </div>
+    <p-divider />
+    }
   </div>
 </div>
