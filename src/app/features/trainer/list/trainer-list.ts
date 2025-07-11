@@ -11,5 +11,5 @@ import { TrainerHttpClient } from '../trainer-http-client';
 export class TrainerList {
   private readonly http = inject(TrainerHttpClient);
 
-  protected trainers$ = this.http.getTrainers({ page: '1', limit: '10' });
+  protected trainers$ = this.http.getTrainers({ page: '1', limit: '9' });
 }

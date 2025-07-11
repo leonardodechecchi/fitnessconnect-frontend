@@ -1,7 +1,11 @@
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-  @for (trainer of (trainers$ | async)?.data; track trainer.user.id) {
-  <a href="">
-    <app-trainer-card [trainer]="trainer" />
-  </a>
-  } @empty { }
+<div class="container mx-auto p-6">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    @for (trainer of (trainers$ | async)?.data; track trainer.user.id) {
+    <a href="">
+      <app-trainer-card [trainer]="trainer" />
+    </a>
+    } @empty {
+    <!-- TODO -->
+    }
+  </div>
 </div>

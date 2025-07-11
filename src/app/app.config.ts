@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
-import Aura from '@primeuix/themes/aura';
+import Lara from '@primeuix/themes/lara';
 import { providePrimeNG } from 'primeng/config';
 import { routes } from './app.routes';
 import { credentialsInterceptor } from './core/interceptors/credentials-interceptor';
@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Aura,
+        preset: Lara,
         options: { darkModeSelector: '.my-app-dark' },
       },
     }),
