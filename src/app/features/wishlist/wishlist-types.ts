@@ -1,5 +1,7 @@
 import { components, paths } from '../../shared/api/types';
 
+export type Wishlist = components['schemas']['Wishlist'];
+
 export type CreateWishlistInput =
   components['schemas']['Create Wishlist Input'];
 export type CreateWishlistResponse =

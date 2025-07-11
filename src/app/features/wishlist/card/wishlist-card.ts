@@ -1,11 +1,12 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
-import { map } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 import { WishlistHttpClient } from '../wishlist-http-client';
-import { GetWishlistsResponse } from '../wishlist-types';
+import { Wishlist } from '../wishlist-types';
 
 @Component({
   selector: 'app-wishlist-card',
@@ -13,15 +14,17 @@ import { GetWishlistsResponse } from '../wishlist-types';
   templateUrl: './wishlist-card.html',
 })
 export class WishlistCard {
-  private readonly http = inject(WishlistHttpClient);
+  #http = inject(WishlistHttpClient);
 
-  readonly wishlist = input.required<GetWishlistsResponse['data'][0]>();
-  readonly item = computed(() =>
-    this.http
-      .getWishlistItems(
-        { wishlistId: this.wishlist().id },
+  wishlist = input.required<Wishlist>();
+
+  item$ = toObservable(this.wishlist).pipe(
+    switchMap((wishlist) =>
+      this.#http.getWishlistItems(
+        { wishlistId: wishlist.id },
         { page: '1', limit: '1', sortBy: 'createdAt', orderBy: 'desc' }
       )
-      .pipe(map((response) => response.data))
+    ),
+    map((res) => res.data)
   );
 }
