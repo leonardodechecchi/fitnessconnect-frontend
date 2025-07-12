@@ -6,8 +6,9 @@ import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DividerModule } from 'primeng/divider';
-import { forkJoin, map, switchMap } from 'rxjs';
+import { forkJoin, map, switchMap, tap } from 'rxjs';
 import { WishlistHttpClient } from '../wishlist-http-client';
+import { GetWishlistItemsResponse } from '../wishlist-types';
 
 @Component({
   selector: 'app-wishlist-detail',
@@ -28,6 +29,8 @@ export class WishlistDetail {
   page = signal(1);
   limit = signal(10);
 
+  items = signal<GetWishlistItemsResponse['data'][number][]>([]);
+
   wishlistId = input.required<string>();
 
   response$ = toObservable(this.wishlistId).pipe(
@@ -41,12 +44,16 @@ export class WishlistDetail {
             { wishlistId },
             { page: this.page().toString(), limit: this.limit().toString() }
           )
-          .pipe(map((res) => res.data)),
+          .pipe(
+            map((res) => res.data),
+            tap((items) => this.items.set(items))
+          ),
       })
     )
   );
 
-  onDelete(event: Event) {
+  onDelete(event: Event, itemId: string) {
+    console.log(event.target);
     this.#confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Are you sure that you want to proceed?',
@@ -61,6 +68,18 @@ export class WishlistDetail {
       acceptButtonProps: {
         label: 'Delete',
         severity: 'danger',
+      },
+      accept: () => {
+        this.#http
+          .deleteWishlistItem({
+            wishlistId: this.wishlistId(),
+            itemId,
+          })
+          .subscribe((res) =>
+            this.items.update((items) =>
+              items.filter((item) => item.id !== res.data.id)
+            )
+          );
       },
     });
   }

@@ -4,7 +4,7 @@
   <p-confirmdialog />
   <div class="flex flex-col gap-4">
     <h1 class="text-4xl font-bold my-10">{{ response?.wishlist?.name }}</h1>
-    @for (item of response?.items; track item.id) {
+    @for (item of items(); track item.id) {
     <div class="flex justify-between items-center">
       <div class="flex items-center gap-4">
         <p-avatar
@@ -18,7 +18,7 @@
         icon="pi pi-trash"
         rounded="true"
         severity="secondary"
-        (onClick)="onDelete($event)"
+        (onClick)="onDelete($event, item.id)"
       />
     </div>
     <p-divider />
