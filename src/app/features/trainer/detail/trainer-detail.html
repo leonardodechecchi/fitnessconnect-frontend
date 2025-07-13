@@ -6,7 +6,7 @@
     <div class="md:col-span-2 md:row-span-2">
       @if (trainer) {
       <div class="flex flex-col gap-4">
-        <app-trainer-card [trainer]="trainer" />
+        <app-trainer-card [trainer]="trainer.trainer" />
         <p-button
           icon="pi pi-plus"
           label="Add to wishlist"
@@ -19,38 +19,73 @@
     </div>
     <div class="md:col-span-4">
       <p-card header="Biografia">
-        @if (trainer) {
-        <p>{{ trainer.bio }}</p>
+        @if (trainer?.trainer) {
+        <p>{{ trainer?.trainer?.bio }}</p>
         }
       </p-card>
     </div>
     <div class="md:col-span-4 md:row-span-2">
-      <p-card header="Slot disponibili">
-        <div>
-          <!-- <p-date-picker
+      <p-card header="Slot Disponibili">
+        <div class="flex flex-col gap-2 mb-2">
+          <label for="date-picker" class="font-semibold"
+            >Seleziona una data</label
+          >
+          <p-date-picker
+            inputId="date-picker"
             [formControl]="date"
             [showIcon]="true"
             [iconDisplay]="'input'"
-            (onSelect)="onSelect($event)"
+            (onSelect)="onDateSelect($event)"
             dateFormat="dd-mm-yy"
             styleClass="mb-3"
           />
-          <div class="flex flex-wrap gap-3">
-            @for (slot of slots(); track $index) {
-            <p-button
-              styleClass="w-28 justify-center text-center"
-              label="{{ slot.start | date : 'hh:mm' }}-{{
-                slot.end | date : 'hh:mm'
-              }}"
-            />
-            } @empty {
-            <p fluid class="text-center text-gray-500">
-              Nessun slot disponibile
-            </p>
-            }
-          </div> -->
         </div>
+        <div class="grid grid-cols-4 gap-4">
+          <div
+            class="flex justify-center border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200 p-5"
+          >
+            <span class="font-semibold">11:00-12:00</span>
+          </div>
+          <div
+            class="flex justify-center border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200 p-5"
+          >
+            <span class="font-semibold">11:00-12:00</span>
+          </div>
+          <div
+            class="flex justify-center border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200 p-5"
+          >
+            <span class="font-semibold">11:00-12:00</span>
+          </div>
+          <div
+            class="flex justify-center border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200 p-5"
+          >
+            <span class="font-semibold">11:00-12:00</span>
+          </div>
+          <div
+            class="flex justify-center border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200 p-5"
+          >
+            <span class="font-semibold">11:00-12:00</span>
+          </div>
+          @for (item of slots(); track $index) { }
+        </div>
+        <p-divider />
+        <p-button label="Conferma e Prenota" [disabled]="true" fluid />
       </p-card>
     </div>
   </div>
 </div>
+
+<!-- <div class="flex flex-wrap gap-3">
+  @for (slot of slots(); track $index) {
+  <p-button
+    styleClass="w-28 justify-center text-center"
+    label="{{ slot.start | date : 'hh:mm' }}-{{
+      slot.end | date : 'hh:mm'
+    }}"
+  />
+  } @empty {
+  <p fluid class="text-center text-gray-500">
+    Nessun slot disponibile
+  </p>
+  }
+</div> -->

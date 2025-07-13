@@ -4,6 +4,9 @@ import { environment } from '../../../environments/environment.development';
 import {
   GetTrainerByIdPathParams,
   GetTrainerByIdResponse,
+  GetTrainerSlotsPathParams,
+  GetTrainerSlotsQueryParams,
+  GetTrainerSlotsResponse,
   GetTrainersQueryParams,
   GetTrainersResponse,
 } from './trainer-types';
@@ -25,6 +28,18 @@ export class TrainerHttpClient {
   getTrainerById(pathParams: GetTrainerByIdPathParams) {
     return this.http.get<GetTrainerByIdResponse>(
       `${this.baseURL}/${pathParams.trainerId}`
+    );
+  }
+
+  getTrainerSlots(
+    pathParams: GetTrainerSlotsPathParams,
+    queryParams: GetTrainerSlotsQueryParams
+  ) {
+    return this.http.get<GetTrainerSlotsResponse>(
+      `${this.baseURL}/${pathParams.trainerId}/slots`,
+      {
+        params: queryParams,
+      }
     );
   }
 }
