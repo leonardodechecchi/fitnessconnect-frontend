@@ -1,6 +1,7 @@
 @let trainer = trainer$ | async;
 
 <div class="container mx-auto">
+  <app-add-to-wishlist-dialog [(show)]="showDialog" [trainerId]="trainerId()" />
   <div class="grid grid-cols-1 md:grid-cols-6 gap-4 p-4">
     <div class="md:col-span-2 md:row-span-2">
       @if (trainer) {

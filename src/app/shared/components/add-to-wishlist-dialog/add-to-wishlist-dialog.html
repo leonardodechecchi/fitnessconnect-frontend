@@ -1,0 +1,53 @@
+<p-dialog
+  modal="true"
+  draggable="false"
+  dismissableMask="true"
+  [(visible)]="show"
+  styleClass="w-150"
+>
+  <ng-template #header>
+    <h1 class="text-2xl font-bold text-gray-900">Aggiungi a wishlist</h1>
+  </ng-template>
+  <div class="max-w-4xl mx-auto">
+    <div class="">
+      <h2 class="text-lg font-semibold text-gray-800 mb-4">Le tue wishlist</h2>
+
+      <p-scrollpanel styleClass="mb-4" [style]="{ height: '250px' }">
+        @for (wishlist of wishlist$ | async; track $index) {
+        <div
+          class="mb-4 flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+        >
+          <label
+            class="flex-1 text-gray-700 cursor-pointer select-none"
+            [for]="wishlist.id"
+            >{{ wishlist.name }}</label
+          >
+          <p-checkbox [inputId]="wishlist.id" [binary]="true" />
+        </div>
+        }
+      </p-scrollpanel>
+      <p-button label="Aggiungi" [disabled]="true" fluid />
+    </div>
+
+    <p-divider>Oppure</p-divider>
+
+    <div>
+      <h2 class="text-lg font-semibold text-gray-800 mb-4">
+        Crea nuova wishlist
+      </h2>
+
+      <div class="flex flex-col gap-4">
+        <p-floatlabel variant="in">
+          <input [formControl]="wishlistName" pInputText pSize="small" fluid />
+          <label>Nome della wishlist</label>
+        </p-floatlabel>
+        <p-button
+          label="Crea"
+          [disabled]="!wishlistName.valid"
+          fluid
+          (onClick)="createWishlist()"
+        />
+      </div>
+    </div>
+  </div>
+</p-dialog>
