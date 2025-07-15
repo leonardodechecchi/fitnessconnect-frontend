@@ -1,26 +1,31 @@
-@let trainer = trainer$ | async;
+@let trainerAndSlots = trainerAndSlots$ | async;
 
 <div class="container mx-auto">
-  <app-add-to-wishlist-dialog [(show)]="showDialog" [trainerId]="trainerId()" />
+  <app-add-to-wishlist-dialog
+    [(show)]="isDialogVisible"
+    [trainerId]="trainerId()"
+  />
+
   <div class="grid grid-cols-1 md:grid-cols-6 gap-4 p-4">
     <div class="md:col-span-2 md:row-span-2">
-      @if (trainer) {
+      @if (trainerAndSlots) {
       <div class="flex flex-col gap-4">
-        <app-trainer-card [trainer]="trainer.trainer" />
+        <app-trainer-card [trainer]="trainerAndSlots.trainer" />
         <p-button
           icon="pi pi-plus"
           label="Add to wishlist"
           severity="secondary"
           fluid
-          (onClick)="onClick()"
+          (onClick)="openAddToWishlistDialog()"
         />
       </div>
       }
     </div>
+
     <div class="md:col-span-4">
       <p-card header="Biografia">
-        @if (trainer?.trainer) {
-        <p>{{ trainer?.trainer?.bio }}</p>
+        @if (trainerAndSlots) {
+        <p>{{ trainerAndSlots.trainer.bio }}</p>
         }
       </p-card>
     </div>
@@ -35,11 +40,20 @@
             [formControl]="date"
             [showIcon]="true"
             [iconDisplay]="'input'"
-            (onSelect)="onDateSelect($event)"
+            (onSelect)="onDateChange($event)"
             dateFormat="dd-mm-yy"
             styleClass="mb-3"
           />
         </div>
+
+        <!-- TODO -->
+
+        <button
+          class="py-3 px-4 rounded-lg text-sm font-medium transition-all duration-200 flex flex-col items-center justify-center min-h-[60px] relative"
+        >
+          <span class="text-base font-semibold">11:00</span>
+        </button>
+
         <div class="grid grid-cols-4 gap-4">
           <div
             class="flex justify-center border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200 p-5"
@@ -66,7 +80,7 @@
           >
             <span class="font-semibold">11:00-12:00</span>
           </div>
-          @for (item of slots(); track $index) { }
+          @for (item of availableSlots(); track $index) { }
         </div>
         <p-divider />
         <p-button label="Conferma e Prenota" [disabled]="true" fluid />

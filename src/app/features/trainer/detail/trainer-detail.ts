@@ -13,6 +13,7 @@ import { forkJoin, map, switchMap } from 'rxjs';
 import { AddToWishlistDialog } from '../../../shared/components/add-to-wishlist-dialog/add-to-wishlist-dialog';
 import { TrainerCard } from '../card/trainer-card';
 import { TrainerHttpClient } from '../trainer-http-client';
+import { GetTrainerSlotsResponse } from '../trainer-types';
 
 @Component({
   selector: 'app-trainer-detail',
@@ -34,12 +35,12 @@ export class TrainerDetail {
   #http = inject(TrainerHttpClient);
 
   trainerId = input.required<string>();
-  showDialog = signal<boolean>(false);
-  slots = signal<any[]>([]);
+  isDialogVisible = signal<boolean>(false);
+  availableSlots = signal<GetTrainerSlotsResponse['data'][number][]>([]);
 
   date = new FormControl(new Date(), { nonNullable: true });
 
-  trainer$ = toObservable(this.trainerId).pipe(
+  trainerAndSlots$ = toObservable(this.trainerId).pipe(
     switchMap((trainerId) =>
       forkJoin({
         trainer: this.#http
@@ -53,16 +54,16 @@ export class TrainerDetail {
     )
   );
 
-  onClick() {
-    this.showDialog.set(true);
+  openAddToWishlistDialog() {
+    this.isDialogVisible.set(true);
   }
 
-  onDateSelect(date: Date) {
+  onDateChange(date: Date) {
     const selectedDate = DateTime.fromJSDate(date).toISODate();
 
     this.#http
       .getTrainerSlots({ trainerId: this.trainerId() }, { date: selectedDate! })
       .pipe(map((res) => res.data))
-      .subscribe((slots) => this.slots.set(slots));
+      .subscribe((slots) => this.availableSlots.set(slots));
   }
 }
