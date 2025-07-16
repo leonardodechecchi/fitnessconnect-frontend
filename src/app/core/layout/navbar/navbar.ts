@@ -21,6 +21,8 @@ export class Navbar {
 
   readonly menuItems: MenuItem[] = [];
   readonly avatarMenuItems: MenuItem[] = [
+    { icon: 'pi pi-heart', label: 'Wishlist', routerLink: '/wishlists' },
+    { separator: true },
     {
       label: 'Logout',
       icon: 'pi pi-sign-out',
@@ -28,8 +30,4 @@ export class Navbar {
         this.#auth.logout().subscribe(() => this.#router.navigate(['/login'])),
     },
   ];
-
-  goToWishlist() {
-    this.#router.navigate(['/wishlists']);
-  }
 }

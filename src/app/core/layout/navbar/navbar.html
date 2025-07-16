@@ -9,13 +9,8 @@
     <h1 class="text-xl font-bold">FitnessConnect</h1>
   </ng-template>
   <ng-template #end>
-    <div class="flex items-center gap-6">
-      <p-button
-        icon="pi pi-heart"
-        severity="secondary"
-        size="small"
-        (onClick)="goToWishlist()"
-      />
+    <div class="flex items-center gap-5">
+      <p-button icon="pi pi-bell" severity="secondary" size="small" />
       <p-avatar
         shape="circle"
         [image]="user?.profilePictureUrl"
