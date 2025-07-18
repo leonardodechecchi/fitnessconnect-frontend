@@ -27,7 +27,13 @@
           fluid
         />
       </div>
-      <p-button label="Login" type="submit" fluid />
+      <p-button
+        label="Login"
+        type="submit"
+        [disabled]="!loginForm.valid"
+        [loading]="isLoading()"
+        fluid
+      />
     </form>
 
     <p-divider>Or</p-divider>

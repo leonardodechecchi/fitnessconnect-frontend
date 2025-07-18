@@ -1,11 +1,17 @@
-import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject, signal } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { finalize } from 'rxjs/operators';
 import { AuthApi } from '../../auth-api';
 
 @Component({
@@ -26,11 +32,24 @@ export class LoginPage {
   #router = inject(Router);
 
   loginForm = new FormGroup({
-    email: new FormControl<string>('', { nonNullable: true }),
-    password: new FormControl<string>('', { nonNullable: true }),
+    email: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    password: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
   });
 
+  isLoading = signal<boolean>(false);
+
   performLogin() {
-    this.#authApi.login(this.loginForm.getRawValue()).subscribe(console.log);
+    this.isLoading.set(true);
+
+    this.#authApi
+      .login(this.loginForm.getRawValue())
+      .pipe(finalize(() => this.isLoading.set(false)))
+      .subscribe(() => {});
   }
 }
