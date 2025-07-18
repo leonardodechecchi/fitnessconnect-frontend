@@ -1,0 +1,62 @@
+<div class="min-h-screen flex items-center justify-center p-4">
+  <p-card header="Login" class="max-w-md w-full">
+    <!-- Standard auth -->
+    <form
+      class="flex flex-col gap-4"
+      [formGroup]="loginForm"
+      (ngSubmit)="performLogin()"
+    >
+      <div class="flex flex-col gap-2">
+        <label for="email-control">Email</label>
+        <input
+          id="email-control"
+          type="email"
+          placeholder="Enter your email"
+          [formControl]="loginForm.controls.email"
+          pInputText
+        />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="password-control">Password</label>
+        <p-password
+          id="password-control"
+          placeholder="Enter your password"
+          feedback="false"
+          toggleMask="true"
+          [formControl]="loginForm.controls.password"
+          fluid
+        />
+      </div>
+      <p-button icon="pi pi-sign-in" label="Login" type="submit" fluid />
+    </form>
+
+    <p-divider>Or</p-divider>
+
+    <!-- Social auth -->
+    <div class="flex flex-col gap-4">
+      <p-button
+        icon="pi pi-google"
+        label="Login with Google"
+        severity="danger"
+        outlined="true"
+        fluid
+      />
+      <p-button
+        icon="pi pi-facebook"
+        label="Login with Facebook"
+        severity="info"
+        outlined="true"
+        fluid
+      />
+    </div>
+
+    <!-- Not a member -->
+    <p class="mt-4 text-center text-sm">
+      Not a member?<a
+        class="ms-2 text-primary-600 hover:text-primary-800 hover:underline transition-all duration-300"
+        routerLink="/register"
+        >Register</a
+      >
+    </p>
+  </p-card>
+</div>
