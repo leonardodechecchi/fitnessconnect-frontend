@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@plugin "tailwindcss-primeui";
+
 @font-face {
     font-family: 'Manrope';
     src: url('assets/fonts/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
