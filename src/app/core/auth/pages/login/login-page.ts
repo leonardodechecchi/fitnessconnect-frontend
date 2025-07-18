@@ -50,6 +50,6 @@ export class LoginPage {
     this.#authApi
       .login(this.loginForm.getRawValue())
       .pipe(finalize(() => this.isLoading.set(false)))
-      .subscribe(() => {});
+      .subscribe(() => this.#router.navigate(['/trainers']));
   }
 }

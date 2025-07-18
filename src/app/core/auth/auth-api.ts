@@ -13,14 +13,13 @@ import {
 export class AuthApi {
   #http = inject(HttpClient);
 
+  #baseUrl = 'http://localhost:3000/auth';
+
   login(body: LoginBody) {
-    return this.#http.post<LoginResponse>(
-      'http://localhost:3000/auth/login',
-      body,
-    );
+    return this.#http.post<LoginResponse>(`${this.#baseUrl}/login`, body);
   }
 
   register(body: RegisterBody) {
-    return this.#http.post<RegisterResponse>('/auth/register', body);
+    return this.#http.post<RegisterResponse>(`${this.#baseUrl}/register`, body);
   }
 }
