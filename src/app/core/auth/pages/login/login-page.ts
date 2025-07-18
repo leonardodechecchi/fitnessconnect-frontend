@@ -6,7 +6,7 @@ import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
-import { AuthApi } from '../auth-api';
+import { AuthApi } from '../../auth-api';
 
 @Component({
   selector: 'app-login-page',

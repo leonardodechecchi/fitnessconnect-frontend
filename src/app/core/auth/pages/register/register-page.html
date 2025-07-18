@@ -1,0 +1,48 @@
+<div class="min-h-screen flex items-center justify-center p-4">
+  <p-card header="Register" class="max-w-md w-full">
+    <form class="flex flex-col gap-4" [formGroup]="registerForm">
+      <div class="flex flex-col gap-2">
+        <label for="firstname-control">Firstname</label>
+        <input
+          id="firstname-control"
+          type="text"
+          placeholder="Enter your firstname"
+          [formControl]="registerForm.controls.firstName"
+          pInputText
+        />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="lastname-control">Lastname</label>
+        <input
+          id="lastname-control"
+          type="text"
+          placeholder="Enter your lastname"
+          [formControl]="registerForm.controls.lastName"
+          pInputText
+        />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="email-control">Email</label>
+        <input
+          id="email-control"
+          type="email"
+          placeholder="Enter your email"
+          [formControl]="registerForm.controls.email"
+          pInputText
+        />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="password-control">Password</label>
+        <p-password
+          id="password-control"
+          placeholder="Enter your password"
+          feedback="false"
+          toggleMask="true"
+          [formControl]="registerForm.controls.password"
+          fluid
+        />
+      </div>
+      <p-button label="Register" type="submit" fluid />
+    </form>
+  </p-card>
+</div>
