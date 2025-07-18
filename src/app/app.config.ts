@@ -1,3 +1,4 @@
+import { provideHttpClient } from '@angular/common/http';
 import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
@@ -13,12 +14,15 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
+    provideHttpClient(),
     provideRouter(routes),
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
         preset: Lara,
-        options: { darkModeSelector: '.my-app-dark' },
+        options: {
+          darkModeSelector: '.my-app-dark',
+        },
       },
     }),
   ],
