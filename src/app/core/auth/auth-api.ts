@@ -16,10 +16,16 @@ export class AuthApi {
   #baseUrl = 'http://localhost:3000/auth';
 
   login(body: LoginBody) {
-    return this.#http.post<LoginResponse>(`${this.#baseUrl}/login`, body);
+    return this.#http.post<LoginResponse>(`${this.#baseUrl}/login`, body, {
+      withCredentials: true,
+    });
   }
 
   register(body: RegisterBody) {
-    return this.#http.post<RegisterResponse>(`${this.#baseUrl}/register`, body);
+    return this.#http.post<RegisterResponse>(
+      `${this.#baseUrl}/register`,
+      body,
+      { withCredentials: true },
+    );
   }
 }

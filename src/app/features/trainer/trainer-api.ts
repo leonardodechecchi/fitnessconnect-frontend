@@ -13,6 +13,7 @@ export class TrainerApi {
   getTrainers(query: GetTrainersQuery) {
     return this.#http.get<GetTrainersResponse>(this.#baseUrl, {
       params: query,
+      withCredentials: true,
     });
   }
 }
