@@ -1,0 +1,9 @@
+<p-card>
+  <ng-template #header>
+    <img
+      [src]="trainer().user.profilePictureUrl"
+      [alt]="trainer().user.fullName"
+    />
+  </ng-template>
+  <ng-template #title>{{ trainer().user.fullName }}</ng-template>
+</p-card>
