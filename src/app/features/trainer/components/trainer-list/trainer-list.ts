@@ -1,5 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 import { TrainerApi } from '../../trainer-api';
 import { TrainerCard } from '../trainer-card/trainer-card';
@@ -7,7 +8,7 @@ import { TrainerCard } from '../trainer-card/trainer-card';
 @Component({
   selector: 'app-trainer-list',
   templateUrl: './trainer-list.html',
-  imports: [TrainerCard, AsyncPipe],
+  imports: [TrainerCard, AsyncPipe, RouterLink],
 })
 export class TrainerList {
   #trainerApi = inject(TrainerApi);

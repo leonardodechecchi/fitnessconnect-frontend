@@ -1,0 +1,9 @@
+@let trainer = trainer$ | async;
+
+<div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 xl:px-24">
+  <div class="grid">
+    @if (trainer) {
+      <app-trainer-card [trainer]="trainer" />
+    }
+  </div>
+</div>

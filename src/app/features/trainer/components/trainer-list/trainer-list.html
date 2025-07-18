@@ -1,5 +1,7 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
   @for (trainer of trainers$ | async; track trainer.user.id) {
-    <app-trainer-card [trainer]="trainer" />
+    <a [routerLink]="['/trainer', trainer.user.id]">
+      <app-trainer-card [trainer]="trainer" />
+    </a>
   }
 </div>

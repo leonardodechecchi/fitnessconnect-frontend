@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { GetTrainersQuery, GetTrainersResponse } from './trainer-types';
+import {
+  GetTrainerPath,
+  GetTrainerResponse,
+  GetTrainersQuery,
+  GetTrainersResponse,
+} from './trainer-types';
 
 @Injectable({
   providedIn: 'root',
@@ -15,5 +20,12 @@ export class TrainerApi {
       params: query,
       withCredentials: true,
     });
+  }
+
+  getTrainer(path: GetTrainerPath) {
+    return this.#http.get<GetTrainerResponse>(
+      `${this.#baseUrl}/${path.trainerId}`,
+      { withCredentials: true },
+    );
   }
 }
