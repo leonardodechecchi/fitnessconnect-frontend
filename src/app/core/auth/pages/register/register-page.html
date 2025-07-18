@@ -1,6 +1,10 @@
 <div class="min-h-screen flex items-center justify-center p-4">
   <p-card header="Register" class="max-w-md w-full">
-    <form class="flex flex-col gap-4" [formGroup]="registerForm">
+    <form
+      class="flex flex-col gap-4"
+      [formGroup]="registerForm"
+      (ngSubmit)="performRegister()"
+    >
       <div class="flex flex-col gap-2">
         <label for="firstname-control">Firstname</label>
         <input

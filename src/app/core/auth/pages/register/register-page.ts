@@ -27,5 +27,11 @@ export class RegisterPage {
     password: new FormControl<string>('', { nonNullable: true }),
   });
 
-  performRegister() {}
+  performRegister() {
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    this.#authApi
+      .register({ ...this.registerForm.getRawValue(), timezone })
+      .subscribe();
+  }
 }
