@@ -1,0 +1,28 @@
+@let isMobile = isMobile$ | async;
+
+<app-navbar />
+
+<div class="min-h-screen">
+  @if (isMobile) {
+    <p-drawer [(visible)]="isDrawerVisible">
+      <app-filter-menu />
+    </p-drawer>
+  }
+  <!-- Sidebar -->
+  <div
+    class="fixed top-[6rem] left-[2rem] h-[calc(100vh - 8rem)] w-[18rem] transition-transform ease-in-out max-lg:-translate-x-full max-lg:left-0"
+  >
+    <app-filter-menu />
+  </div>
+
+  <!-- Main content -->
+  <div class="ml-[21rem] p-5 transition-[margin] ease-in-out max-lg:ml-0">
+    <p-button
+      icon="pi pi-filter"
+      label="Filtri"
+      styleClass="mb-4"
+      (onClick)="isMobile ? toggleDrawer() : toggleMenu()"
+    />
+    <app-trainer-list />
+  </div>
+</div>

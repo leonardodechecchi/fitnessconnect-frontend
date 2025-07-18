@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { TrainerDetail } from './detail/trainer-detail';
-import { TrainerList } from './list/trainer-list';
+import { TrainerOverviewPage } from './pages/trainer-overview/trainer-overview-page';
 
 export const trainerRoutes: Routes = [
   {
@@ -10,7 +10,7 @@ export const trainerRoutes: Routes = [
   },
   {
     path: 'trainers',
-    component: TrainerList,
+    component: TrainerOverviewPage,
   },
   {
     path: 'trainers/:trainerId',

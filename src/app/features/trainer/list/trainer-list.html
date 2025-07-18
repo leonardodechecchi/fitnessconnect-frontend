@@ -1,15 +1,14 @@
-<app-navbar />
-<div class="container mx-auto p-9">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="@container">
+  <div class="grid grid-cols-1 @lg:grid-cols-2 @xl:grid-cols-3 gap-4">
     @for (trainer of (trainers$ | async)?.data; track trainer.user.id) {
-    <a [routerLink]="['/trainers', trainer.user.id]">
-      <app-trainer-card
-        [trainer]="trainer"
-        [specialties]="trainer.specialties"
-      />
-    </a>
+      <a [routerLink]="['/trainers', trainer.user.id]">
+        <app-trainer-card
+          [trainer]="trainer"
+          [specialties]="trainer.specialties"
+        />
+      </a>
     } @empty {
-    <!-- TODO -->
+      <!-- TODO -->
     }
   </div>
 </div>

@@ -1,0 +1,29 @@
+.layout-wrapper {
+  min-height: 100vh;
+}
+
+.layout-sidebar {
+  position: fixed;
+  width: 20rem;
+  height: calc(100vh - 8rem);
+  top: 6rem;
+  left: 2rem;
+}
+
+.layout-main-container {
+  margin-left: 22rem;
+  padding: 20px;
+}
+
+@media (max-width: 997px) {
+  .layout-sidebar {
+    transform: translate(-100%);
+    left: 0;
+    transition: 0.3s transform ease-in-out;
+  }
+
+  .layout-main-container {
+    margin-left: 0;
+    transition: 0.3s margin-left ease-in-out;
+  }
+}

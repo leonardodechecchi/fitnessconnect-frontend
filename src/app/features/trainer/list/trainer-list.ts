@@ -1,14 +1,26 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Navbar } from '../../../core/layout/navbar/navbar';
+import { ButtonModule } from 'primeng/button';
+import { DrawerModule } from 'primeng/drawer';
+import { InputTextModule } from 'primeng/inputtext';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { TrainerCard } from '../card/trainer-card';
 import { TrainerHttpClient } from '../trainer-http-client';
 
 @Component({
   selector: 'app-trainer-list',
-  imports: [AsyncPipe, TrainerCard, RouterLink, Navbar],
+  styleUrl: './trainer-list.css',
   templateUrl: './trainer-list.html',
+  imports: [
+    AsyncPipe,
+    TrainerCard,
+    RouterLink,
+    DrawerModule,
+    InputTextModule,
+    ButtonModule,
+    MultiSelectModule,
+  ],
 })
 export class TrainerList {
   readonly #http = inject(TrainerHttpClient);
