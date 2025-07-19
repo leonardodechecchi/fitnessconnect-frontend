@@ -1,3 +1,30 @@
-<div class="max-w-7xl mx-auto py-4 px-4 sm:px-8 lg:px-16 xl:px-24">
-  <app-trainer-list />
+<!-- Sidebar mobile -->
+@if (isMobile$ | async) {
+  <p-drawer [(visible)]="isDrawerOpen" closable="false">
+    <app-search-filter />
+  </p-drawer>
+}
+
+<div
+  class="fixed inset-y-0 left-0 z-10 w-80 p-4 transition-transform ease-in-out duration-300 xl:translate-x-0 max-xl:-translate-x-full"
+>
+  <!-- Sidebar desktop -->
+  <p-card class="h-full">
+    <app-search-filter />
+  </p-card>
+</div>
+
+<!-- Main container -->
+<div class="transition-all duration-300 ease-in-out xl:pl-[22rem] max-xl:pl-0">
+  <div class="max-w-7xl mx-auto py-4 px-4 sm:px-8 lg:px-16 xl:px-24">
+    <div class="flex flex-col gap-4">
+      <p-button
+        icon="pi pi-filter"
+        label="Filters"
+        class="xl:hidden"
+        (onClick)="toggleDrawer()"
+      />
+      <app-trainer-list />
+    </div>
+  </div>
 </div>
