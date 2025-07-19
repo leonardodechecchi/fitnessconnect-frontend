@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import {
+  CheckAuthResponse,
   LoginBody,
   LoginResponse,
   RegisterBody,
@@ -14,6 +15,12 @@ export class AuthApi {
   #http = inject(HttpClient);
 
   #baseUrl = 'http://localhost:3000/auth';
+
+  checkAuth() {
+    return this.#http.get<CheckAuthResponse>(this.#baseUrl, {
+      withCredentials: true,
+    });
+  }
 
   login(body: LoginBody) {
     return this.#http.post<LoginResponse>(`${this.#baseUrl}/login`, body, {

@@ -1,5 +1,9 @@
 import { components, paths } from '../../shared/api/types';
 
+// Auth
+export type CheckAuthResponse =
+  paths['/auth/']['get']['responses']['200']['content']['application/json'];
+
 // Login
 export type LoginBody = components['schemas']['Login Input'];
 
