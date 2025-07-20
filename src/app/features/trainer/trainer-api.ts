@@ -18,14 +18,12 @@ export class TrainerApi {
   getTrainers(query: GetTrainersQuery) {
     return this.#http.get<GetTrainersResponse>(this.#baseUrl, {
       params: query,
-      withCredentials: true,
     });
   }
 
   getTrainer(path: GetTrainerPath) {
     return this.#http.get<GetTrainerResponse>(
       `${this.#baseUrl}/${path.trainerId}`,
-      { withCredentials: true },
     );
   }
 }
