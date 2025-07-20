@@ -1,5 +1,5 @@
 <!-- Sidebar mobile -->
-@if (isMobile$ | async) {
+@if (!(isDesktop$ | async)) {
   <p-drawer [(visible)]="isDrawerOpen" closable="false">
     <app-search-filter />
   </p-drawer>

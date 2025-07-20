@@ -23,8 +23,8 @@ import { TrainerList } from '../../components/trainer-list/trainer-list';
 export class TrainerOverviewPage {
   #breakpoint = inject(BreakpointObserver);
 
-  isMobile$ = this.#breakpoint
-    .observe([Breakpoints.XSmall, Breakpoints.Small])
+  isDesktop$ = this.#breakpoint
+    .observe([Breakpoints.XLarge])
     .pipe(map((result) => result.matches));
 
   isDrawerOpen = signal<boolean>(false);
