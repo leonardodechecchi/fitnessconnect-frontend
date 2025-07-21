@@ -1,4 +1,9 @@
-<p-card class="h-full">
+<p-card
+  class="h-full"
+  [ngClass]="{
+    'transition-transform duration-200 ease-in-out hover:scale-105': scale(),
+  }"
+>
   <ng-template #header>
     <img
       class="w-full rounded-t-lg"
