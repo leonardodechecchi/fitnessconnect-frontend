@@ -1,9 +1,10 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { DateTime } from 'luxon';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { DatePickerModule } from 'primeng/datepicker';
 import { map, of, switchMap } from 'rxjs';
 import { TrainerCard } from '../../components/trainer-card/trainer-card';
 import { TrainerApi } from '../../trainer-api';
@@ -11,12 +12,22 @@ import { TrainerApi } from '../../trainer-api';
 @Component({
   selector: 'app-trainer-detail-page',
   templateUrl: './trainer-detail-page.html',
-  imports: [AsyncPipe, TrainerCard, CardModule, DatePipe, ButtonModule],
+  imports: [
+    AsyncPipe,
+    TrainerCard,
+    CardModule,
+    DatePipe,
+    ButtonModule,
+    DatePickerModule,
+  ],
 })
 export class TrainerDetailPage {
   #trainerApi = inject(TrainerApi);
 
   readonly trainerId = input.required<string>();
+  readonly date = signal<Date>(new Date());
+
+  s = new Date();
 
   trainer$ = toObservable(this.trainerId).pipe(
     switchMap((trainerId) => this.#trainerApi.getTrainer({ trainerId })),
