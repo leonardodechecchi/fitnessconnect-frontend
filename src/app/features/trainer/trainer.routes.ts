@@ -10,7 +10,7 @@ export const trainerRoutes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'trainer/:trainerId',
+    path: 'trainers/:trainerId',
     component: TrainerDetailPage,
     canActivate: [authGuard],
   },

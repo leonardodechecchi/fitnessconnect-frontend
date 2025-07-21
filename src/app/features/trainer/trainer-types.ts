@@ -16,3 +16,13 @@ export type GetTrainerPath =
 
 export type GetTrainerResponse =
   paths['/trainers/{trainerId}']['get']['responses']['200']['content']['application/json'];
+
+// Get Trainer Slots
+export type GetTrainerSlotsPath =
+  paths['/trainers/{trainerId}/slots']['get']['parameters']['path'];
+
+export type GetTrainerSlotsQuery =
+  paths['/trainers/{trainerId}/slots']['get']['parameters']['query'];
+
+export type GetTrainerSlotsResponse =
+  paths['/trainers/{trainerId}/slots']['get']['responses']['200']['content']['application/json'];

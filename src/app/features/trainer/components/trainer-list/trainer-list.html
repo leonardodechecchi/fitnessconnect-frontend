@@ -4,7 +4,7 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
     @if (result?.data; as trainers) {
       @for (trainer of trainers; track trainer.user.id) {
-        <a [routerLink]="['/trainer', trainer.user.id]">
+        <a [routerLink]="['/trainers', trainer.user.id]">
           <app-trainer-card [trainer]="trainer" />
         </a>
       }

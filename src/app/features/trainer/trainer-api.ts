@@ -3,6 +3,9 @@ import { inject, Injectable } from '@angular/core';
 import {
   GetTrainerPath,
   GetTrainerResponse,
+  GetTrainerSlotsPath,
+  GetTrainerSlotsQuery,
+  GetTrainerSlotsResponse,
   GetTrainersQuery,
   GetTrainersResponse,
 } from './trainer-types';
@@ -24,6 +27,13 @@ export class TrainerApi {
   getTrainer(path: GetTrainerPath) {
     return this.#http.get<GetTrainerResponse>(
       `${this.#baseUrl}/${path.trainerId}`,
+    );
+  }
+
+  getTrainerSlots(path: GetTrainerSlotsPath, query: GetTrainerSlotsQuery) {
+    return this.#http.get<GetTrainerSlotsResponse>(
+      `${this.#baseUrl}/${path.trainerId}/slots`,
+      { params: query },
     );
   }
 }
