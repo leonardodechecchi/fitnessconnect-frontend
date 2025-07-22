@@ -1,6 +1,7 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, inject, input, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { FormsModule } from '@angular/forms';
 import { DateTime } from 'luxon';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -19,6 +20,7 @@ import { TrainerApi } from '../../trainer-api';
     DatePipe,
     ButtonModule,
     DatePickerModule,
+    FormsModule,
   ],
 })
 export class TrainerDetailPage {
@@ -26,8 +28,6 @@ export class TrainerDetailPage {
 
   readonly trainerId = input.required<string>();
   readonly date = signal<Date>(new Date());
-
-  s = new Date();
 
   trainer$ = toObservable(this.trainerId).pipe(
     switchMap((trainerId) => this.#trainerApi.getTrainer({ trainerId })),

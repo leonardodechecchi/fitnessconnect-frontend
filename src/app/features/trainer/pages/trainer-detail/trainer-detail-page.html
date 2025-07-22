@@ -23,7 +23,12 @@
         <!-- Booking section -->
         <p-card header="Book a Session">
           <div class="flex flex-col gap-6">
-            <p-datepicker showIcon="true" iconDisplay="input" />
+            <p-datepicker
+              showIcon="true"
+              iconDisplay="input"
+              [(ngModel)]="date"
+              dateFormat="dd/mm/yy"
+            />
             <!-- Available Slots -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               @for (slot of slots; track $index) {
