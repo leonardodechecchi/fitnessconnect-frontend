@@ -1,0 +1,46 @@
+<div class="flex flex-col gap-6" #body>
+  <!-- Date Selection -->
+  <div class="flex flex-col gap-2">
+    <label class="sm:text-sm font-medium text-gray-700">Select a date</label>
+    <p-datepicker
+      showIcon="true"
+      iconDisplay="input"
+      dateFormat="dd/mm/yy"
+      placeholder="Choose a date..."
+      [appendTo]="body"
+      [(ngModel)]="date"
+    />
+  </div>
+
+  <!-- Time Slots -->
+  <div class="flex flex-col gap-3">
+    <label class="sm:text-sm font-medium text-gray-700"
+      >Available time slots</label
+    >
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      @for (slot of slots(); track slot.id) {
+        <button
+          class="p-3 rounded-lg bg-white border border-gray-200 transition-all duration-200 hover:shadow-md"
+          [ngClass]="{
+            'bg-primary-500 text-white border-primary-500': slot.selected,
+            'hover:bg-primary-50 hover:border-primary-300': !slot.selected,
+          }"
+          (click)="selectSlot(slot.id)"
+        >
+          <span class="font-medium sm:text-sm">
+            {{ slot.start | date: "HH:mm" }} -
+            {{ slot.end | date: "HH:mm" }}
+          </span>
+        </button>
+      } @empty {
+        <div class="col-span-full text-center py-6">
+          <p class="sm:text-sm text-gray-500">
+            No available slots for this date
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <p-button label="Book" [disabled]="!selectedSlot()" fluid class="mt-2" />
+</div>

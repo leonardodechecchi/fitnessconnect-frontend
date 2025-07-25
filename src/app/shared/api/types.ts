@@ -726,10 +726,7 @@ export interface paths {
                         "application/json": {
                             message?: string;
                             timestamp: string;
-                            data: {
-                                start: string;
-                                end: string;
-                            }[];
+                            data: components["schemas"]["Slot"][];
                         };
                     };
                 };
@@ -1509,6 +1506,10 @@ export interface components {
             user: components["schemas"]["User"];
             bio?: string;
             sessionDuration: number;
+        };
+        Slot: {
+            start: string;
+            end: string;
         };
         Wishlist: {
             id: string;
