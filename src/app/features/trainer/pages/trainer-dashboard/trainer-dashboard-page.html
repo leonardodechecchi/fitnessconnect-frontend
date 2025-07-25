@@ -1,20 +1,36 @@
-<div class="flex flex-col">
-  <p-card header="Availabilities">
-    <p-table rowHover="true" showGridlines [value]="availabilities()">
-      <ng-template #header>
-        <tr>
-          <th>Week day</th>
-          <th>Start time</th>
-          <th>End time</th>
-        </tr>
-      </ng-template>
-      <ng-template #body let-availability>
-        <tr>
-          <td>{{ availability.dayOfWeek }}</td>
-          <td>{{ availability.startTime }}</td>
-          <td>{{ availability.endTime }}</td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </p-card>
+<div class="min-h-screen">
+  <div class="fixed inset-0 w-64 shadow-lg overflow-y-auto">
+    <div>
+      <ul class="list-none">
+        <li
+          class="p-4 hover:bg-gray-100 transition-all duration-200 ease-in-out"
+        >
+          <a class="flex items-center gap-2 ml-4" href="">
+            <i class="pi pi-home"></i>
+            <span>Home</span>
+          </a>
+        </li>
+        <li
+          class="p-4 hover:bg-gray-100 transition-all duration-200 ease-in-out"
+        >
+          <a class="flex items-center gap-2 ml-4" routerLink="availabilities">
+            <i class="pi pi-calendar"></i>
+            <span>Availabilities</span>
+          </a>
+        </li>
+        <li
+          class="p-4 hover:bg-gray-100 transition-all duration-200 ease-in-out"
+        >
+          <a class="flex items-center gap-2 ml-4" routerLink="chats">
+            <i class="pi pi-comments"></i>
+            <span>Chats</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ml-64 p-4">
+    <router-outlet />
+  </div>
 </div>
