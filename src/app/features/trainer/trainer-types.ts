@@ -26,3 +26,10 @@ export type GetTrainerSlotsQuery =
 
 export type GetTrainerSlotsResponse =
   paths['/trainers/{trainerId}/slots']['get']['responses']['200']['content']['application/json'];
+
+// Get Trainer Availabilities
+export type GetTrainerAvailabilitiesPath =
+  paths['/trainers/{trainerId}/availabilities']['get']['parameters']['path'];
+
+export type GetTrainerAvailabilitiesResponse =
+  paths['/trainers/{trainerId}/availabilities']['get']['responses']['200']['content']['application/json'];

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import {
+  GetTrainerAvailabilitiesPath,
+  GetTrainerAvailabilitiesResponse,
   GetTrainerPath,
   GetTrainerResponse,
   GetTrainerSlotsPath,
@@ -34,6 +36,12 @@ export class TrainerApi {
     return this.#http.get<GetTrainerSlotsResponse>(
       `${this.#baseUrl}/${path.trainerId}/slots`,
       { params: query },
+    );
+  }
+
+  getTrainerAvailabilities(path: GetTrainerAvailabilitiesPath) {
+    return this.#http.get<GetTrainerAvailabilitiesResponse>(
+      `${this.#baseUrl}/${path.trainerId}/availabilities`,
     );
   }
 }
