@@ -22,6 +22,7 @@ export const trainerRoutes: Routes = [
     component: TrainerDashboardPage,
     canActivate: [authGuard],
     children: [
+      { path: '', redirectTo: 'availabilities', pathMatch: 'full' },
       { path: 'availabilities', component: TrainerAvailabilityPage },
       { path: 'chats', component: TrainerChatPage },
     ],
