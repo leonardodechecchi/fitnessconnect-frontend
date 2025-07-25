@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
+import { MongoAbility } from '@casl/ability';
+import { AbilityServiceSignal } from '@casl/angular';
 import { MenuItem } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { MenuModule } from 'primeng/menu';
@@ -16,6 +18,7 @@ import { AuthApi } from '../../auth/auth-api';
 export class Navbar {
   #authApi = inject(AuthApi);
   #router = inject(Router);
+  #can = inject<AbilityServiceSignal<MongoAbility>>(AbilityServiceSignal).can;
 
   navbarItems: MenuItem[] = [];
 
@@ -23,6 +26,18 @@ export class Navbar {
     {
       label: 'Profile',
       icon: 'pi pi-user',
+    },
+    {
+      label: 'Dashboard',
+      icon: 'pi pi-cog',
+      visible: this.#can('read', 'Dashboard'),
+      command: () => {
+        this.#router.navigate([
+          '/trainers',
+          this.currentUser()?.id,
+          'dashboard',
+        ]);
+      },
     },
     {
       label: 'Wishlist',

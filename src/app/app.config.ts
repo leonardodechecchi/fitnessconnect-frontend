@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { createMongoAbility, PureAbility } from '@casl/ability';
 import { definePreset } from '@primeuix/themes';
 import Lara from '@primeuix/themes/lara';
 import { providePrimeNG } from 'primeng/config';
@@ -28,6 +29,7 @@ const AppPreset = definePreset(Lara, {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    { provide: PureAbility, useValue: createMongoAbility() },
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideHttpClient(withInterceptors([credentialInterceptor])),

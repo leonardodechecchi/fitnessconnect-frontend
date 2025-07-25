@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { PureAbility } from '@casl/ability';
+import { finalize, map, tap } from 'rxjs';
 import {
   CheckAuthResponse,
   GetMeResponse,
@@ -15,6 +17,7 @@ import {
 })
 export class AuthApi {
   #http = inject(HttpClient);
+  #ability = inject(PureAbility);
 
   #baseUrl = 'http://localhost:3000/auth';
 
@@ -27,11 +30,16 @@ export class AuthApi {
   }
 
   login(body: LoginBody) {
-    return this.#http.post<LoginResponse>(`${this.#baseUrl}/login`, body);
+    return this.#http.post<LoginResponse>(`${this.#baseUrl}/login`, body).pipe(
+      map((response) => response.data),
+      tap((rules) => this.#ability.update(rules)),
+    );
   }
 
   logout() {
-    return this.#http.post<LogoutResponse>(`${this.#baseUrl}/logout`, {});
+    return this.#http
+      .post<LogoutResponse>(`${this.#baseUrl}/logout`, {})
+      .pipe(finalize(() => this.#ability.update([])));
   }
 
   register(body: RegisterBody) {
