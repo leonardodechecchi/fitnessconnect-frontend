@@ -2,8 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import {
   CheckAuthResponse,
+  GetMeResponse,
   LoginBody,
   LoginResponse,
+  LogoutResponse,
   RegisterBody,
   RegisterResponse,
 } from './auth-types';
@@ -20,8 +22,16 @@ export class AuthApi {
     return this.#http.get<CheckAuthResponse>(this.#baseUrl);
   }
 
+  getMe() {
+    return this.#http.get<GetMeResponse>(`${this.#baseUrl}/me`);
+  }
+
   login(body: LoginBody) {
     return this.#http.post<LoginResponse>(`${this.#baseUrl}/login`, body);
+  }
+
+  logout() {
+    return this.#http.post<LogoutResponse>(`${this.#baseUrl}/logout`, {});
   }
 
   register(body: RegisterBody) {

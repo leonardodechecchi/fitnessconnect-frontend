@@ -1,0 +1,17 @@
+<!-- Profile menu -->
+<p-menu #menu popup="true" [model]="menuItems" />
+
+<p-menubar [model]="navbarItems">
+  <ng-template #end>
+    <div class="flex items-center">
+      @if (currentUser(); as currentUser) {
+        <p-avatar
+          [image]="currentUser.profilePictureUrl"
+          shape="circle"
+          class="cursor-pointer"
+          (click)="menu.toggle($event)"
+        />
+      }
+    </div>
+  </ng-template>
+</p-menubar>

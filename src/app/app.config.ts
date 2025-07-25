@@ -6,10 +6,25 @@ import {
 } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { definePreset } from '@primeuix/themes';
 import Lara from '@primeuix/themes/lara';
 import { providePrimeNG } from 'primeng/config';
 import { routes } from './app.routes';
 import { credentialInterceptor } from './core/interceptors/credential-inteceptor';
+
+const AppPreset = definePreset(Lara, {
+  components: {
+    menubar: {
+      css: () =>
+        `.p-menubar {
+            background-color: white;
+            border-radius: 0;
+            border: 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05)
+        }`,
+    },
+  },
+});
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,7 +35,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Lara,
+        preset: AppPreset,
         options: {
           darkModeSelector: '.my-app-dark',
         },

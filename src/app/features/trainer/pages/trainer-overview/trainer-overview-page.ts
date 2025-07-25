@@ -5,6 +5,7 @@ import { Button } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DrawerModule } from 'primeng/drawer';
 import { map } from 'rxjs';
+import { Navbar } from '../../../../core/layout/navbar/navbar';
 import { SearchFilter } from '../../components/search-filter/search-filter';
 import { TrainerList } from '../../components/trainer-list/trainer-list';
 
@@ -18,6 +19,7 @@ import { TrainerList } from '../../components/trainer-list/trainer-list';
     DrawerModule,
     Button,
     AsyncPipe,
+    Navbar,
   ],
 })
 export class TrainerOverviewPage {
