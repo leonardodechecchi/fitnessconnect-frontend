@@ -15,7 +15,7 @@
   <ng-template #footer>
     <div class="flex flex-wrap gap-2">
       @for (specialty of trainer().specialties; track specialty.id) {
-        <p-chip [label]="specialty.name" />
+        <p-chip [label]="specialty.name" class="text-sm" />
       }
     </div>
   </ng-template>
