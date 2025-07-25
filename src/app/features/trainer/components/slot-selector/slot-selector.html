@@ -20,14 +20,14 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
       @for (slot of slots(); track slot.id) {
         <button
-          class="p-3 rounded-lg bg-white border border-gray-200 transition-all duration-200 hover:shadow-md"
+          class="p-3 rounded-lg border border-gray-300 transition-all duration-200 hover:shadow-md cursor-pointer"
           [ngClass]="{
-            'bg-primary-500 text-white border-primary-500': slot.selected,
+            'bg-primary-500 text-white': slot.selected,
             'hover:bg-primary-50 hover:border-primary-300': !slot.selected,
           }"
           (click)="selectSlot(slot.id)"
         >
-          <span class="font-medium sm:text-sm">
+          <span>
             {{ slot.start | date: "HH:mm" }} -
             {{ slot.end | date: "HH:mm" }}
           </span>
