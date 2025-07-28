@@ -1,6 +1,56 @@
-<div class="flex flex-col">
-  <p-card header="Availabilities">
-    <p-table rowHover="true" showGridlines [value]="availabilities()">
+<div class="flex flex-col gap-4">
+  <h1 class="text-4xl">Availability</h1>
+  <p-card>
+    <div class="flex flex-col gap-4">
+      <h2 class="font-bold">Monday</h2>
+      <div class="flex gap-2">
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-medium" for="">Start time</label>
+          <p-datepicker [timeOnly]="true" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-medium" for="">End time</label>
+          <p-datepicker [timeOnly]="true" />
+        </div>
+      </div>
+      <p-button rounded="true" label="Add availability" />
+    </div>
+  </p-card>
+
+  <p-card>
+    <div class="flex flex-col gap-4">
+      <h2 class="font-bold">Monday</h2>
+      <div class="flex gap-2">
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-medium" for="">Start time</label>
+          <p-datepicker [timeOnly]="true" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-medium" for="">End time</label>
+          <p-datepicker [timeOnly]="true" />
+        </div>
+      </div>
+      <p-button rounded="true" label="Add availability" />
+    </div>
+  </p-card>
+
+  <p-card>
+    <div class="flex flex-col gap-4">
+      <h2 class="font-bold">Monday</h2>
+      <div class="flex gap-2">
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-medium" for="">Start time</label>
+          <p-datepicker [timeOnly]="true" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-medium" for="">End time</label>
+          <p-datepicker [timeOnly]="true" />
+        </div>
+      </div>
+      <p-button rounded="true" label="Add availability" />
+    </div>
+  </p-card>
+  <!-- <p-table rowHover="true" [value]="availabilities()">
       <ng-template #header>
         <tr>
           <th>Week day</th>
@@ -15,6 +65,5 @@
           <td>{{ availability.endTime }}</td>
         </tr>
       </ng-template>
-    </p-table>
-  </p-card>
+    </p-table> -->
 </div>
